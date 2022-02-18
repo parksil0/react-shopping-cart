@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const index = () => {
   return (
-    <nav className="nav flex justify-around">
+    <nav className="nav flex justify-around align-items-center">
       <div className="flex-center">
         <Link to="/">
           <h1 className="nav-title">CLEAN CODE SHOP</h1>
@@ -11,10 +11,10 @@ const index = () => {
       </div>
       <div className="flex gap-15">
         <Link to="/cart">
-          <button className="nav-button">장바구니</button>
+          <button className="nav-button cursor-pointer">장바구니</button>
         </Link>
         <Link to="/orderList">
-          <button className="nav-button">주문목록</button>
+          <button className="nav-button cursor-pointer">주문목록</button>
         </Link>
       </div>
     </nav>

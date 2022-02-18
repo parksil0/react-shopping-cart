@@ -4,9 +4,10 @@ import { Product } from "../../types/product";
 
 interface ProductListProps {
   product: Product;
+  onClickCartIcon: (id: number) => void;
 }
 
-const ProductList = ({ product }: ProductListProps) => {
+const ProductList = ({ product, onClickCartIcon }: ProductListProps) => {
   return (
     <div>
       <img
@@ -20,7 +21,12 @@ const ProductList = ({ product }: ProductListProps) => {
           <span className="product-info__name">{product.name}</span>
           <span className="product-info__price">{product.price}원</span>
         </div>
-        <img src={cartIcon} alt="장바구니" />
+        <button
+          className="cursor-pointer"
+          onClick={() => onClickCartIcon(product.id)}
+        >
+          <img src={cartIcon} alt="장바구니" />
+        </button>
       </div>
     </div>
   );
