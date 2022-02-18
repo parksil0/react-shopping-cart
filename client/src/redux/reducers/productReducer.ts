@@ -5,14 +5,16 @@ import { Action } from '../actions/index';
 interface InitialState {
   loading: boolean;
   products: Product[] | null,
+  message: string | null;
 }
 
 const initialState: InitialState = {
   loading: false,
   products: null,
+  message: null,
 };
 
-const getProductReducer = (state = initialState, action: Action) => {
+const productReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case ActionType.GET_PRODUCTS_REQUEST:
       return {
@@ -23,17 +25,18 @@ const getProductReducer = (state = initialState, action: Action) => {
       return {
         ...state,
         loading: false,
-        products: action.payload.data,
+        products: action.payload,
       };
     case ActionType.GET_PRODUCTS_ERROR:
       return {
         ...state,
         loading: false,
-        products: action.payload,
+        products: null,
+        message: '상품을 불러오는데 실패하였습니다.',
       };
     default:
       return state;
   }
 };
 
-export default getProductReducer;
+export default productReducer;

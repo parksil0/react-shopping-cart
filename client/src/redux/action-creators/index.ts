@@ -10,7 +10,7 @@ export const getProducts = () => {
       const products = await requestGetProducts();
       dispatch({ type: ActionType.GET_PRODUCTS_SUCCESS, payload: products })
     } catch (error: any) {
-      dispatch({ type: ActionType.GET_PRODUCTS_ERROR, payload: error });
+      dispatch({ type: ActionType.GET_PRODUCTS_ERROR, payload: error.message });
     }
   }
 }
