@@ -7,7 +7,7 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockNavigation,
 }));
 
-it("장바구니 버튼 클릭 시 장바구니 페이지로 이동한다.", () => {
+test("장바구니 아이콘 클릭 시 장바구니 페이지로 이동한다.", () => {
   render(
     <ProductListItem
       product={{
