@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const index = () => {
+const GNB = () => {
   return (
     <nav className="nav flex justify-around align-items-center">
       <div className="flex-center">
@@ -21,4 +21,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default GNB;
