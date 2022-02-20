@@ -24,7 +24,7 @@ const ProductList = () => {
 
   return (
     <Layout>
-      <section className="product-container">
+      <section>
         <InfiniteScroll
           dataLength={products?.products?.length || 12}
           next={getProducts}
@@ -35,20 +35,24 @@ const ProductList = () => {
               <div>loading...</div>
             </>
           }
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            flexWrap: "wrap",
-            gap: "50px",
-          }}
         >
-          {products?.products?.map((product: Product, index: number) => (
-            <ProductListItem
-              key={`${product.id}-${index}`}
-              product={product}
-              onClickCartIcon={() => onClickCartIcon(product.id)}
-            />
-          ))}
+          <div
+            className="product-container"
+            // style={{
+            //   display: "flex",
+            //   justifyContent: "center",
+            //   flexWrap: "wrap",
+            //   gap: "50px",
+            // }}
+          >
+            {products?.products?.map((product: Product, index: number) => (
+              <ProductListItem
+                key={`${product.id}-${index}`}
+                product={product}
+                onClickCartIcon={() => onClickCartIcon(product.id)}
+              />
+            ))}
+          </div>
         </InfiniteScroll>
       </section>
     </Layout>
