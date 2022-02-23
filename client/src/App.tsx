@@ -4,14 +4,15 @@ import ProductList from "./pages/ProductList";
 import "./examples/css/index.css";
 import Cart from "./pages/Cart";
 import OrderList from "./pages/OrderList";
+import { PATH } from "./constants";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<ProductList />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/orderList" element={<OrderList />} />
+        <Route path={PATH.MAIN} element={<ProductList />} />
+        <Route path={PATH.CART} element={<Cart />} />
+        <Route path={PATH.ORDERLIST} element={<OrderList />} />
       </Routes>
     </BrowserRouter>
   );

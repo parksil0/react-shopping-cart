@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import { PATH } from "../../constants";
 import ProductListItem from "./index";
 
 const mockNavigation = jest.fn();
@@ -26,5 +27,5 @@ test("장바구니 아이콘 클릭 시 장바구니 페이지로 이동한다."
   fireEvent.click(cartIcon);
 
   expect(mockNavigation).toBeCalled();
-  expect(mockNavigation).toBeCalledWith("/cart");
+  expect(mockNavigation).toBeCalledWith(PATH.CART);
 });
