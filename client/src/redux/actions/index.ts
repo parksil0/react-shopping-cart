@@ -6,7 +6,7 @@ export interface GetProductsRequestAction {
 }
 export interface GetProductsSuccessAction {
   type: ActionType.GET_PRODUCTS_SUCCESS;
-  payload: Product[] | any;
+  payload: Product[];
 }
 export interface GetProductsErrorAction {
   type: ActionType.GET_PRODUCTS_ERROR;
@@ -14,6 +14,6 @@ export interface GetProductsErrorAction {
 }
 
 export type Action =
-  GetProductsRequestAction
+  | GetProductsRequestAction
   | GetProductsSuccessAction
   | GetProductsErrorAction;
