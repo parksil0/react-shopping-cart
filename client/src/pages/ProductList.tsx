@@ -19,7 +19,7 @@ const ProductList = () => {
     <Layout>
       <section>
         <InfiniteScroll
-          dataLength={products?.products?.length || 12}
+          dataLength={products?.products?.length}
           next={getProducts}
           hasMore
           loader={
