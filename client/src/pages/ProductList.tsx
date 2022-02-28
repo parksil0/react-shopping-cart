@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 import { useActions } from "../hooks/useActions";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/reducers";
-import { Product } from "../types/product";
+import { Product } from "../types/dto";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const ProductList = () => {
