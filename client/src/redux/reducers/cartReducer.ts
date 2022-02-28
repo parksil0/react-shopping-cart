@@ -1,10 +1,10 @@
-import { Product } from "../../types/dto";
+import { Cart } from "../../types/dto";
 import { ActionType } from "../action-types";
 import { Action } from "../actions/index";
 
 interface InitialState {
   loading: boolean;
-  products: Product[] | null;
+  products: Cart[] | null;
   message: string | null;
 }
 
@@ -14,22 +14,20 @@ const initialState: InitialState = {
   message: null,
 };
 
-const productReducer = (state = initialState, action: Action) => {
+const cartReducer = (state = initialState, action: Action) => {
   switch (action.type) {
-    case ActionType.GET_PRODUCTS_REQUEST:
+    case ActionType.GET_CART_PRODUCTS_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case ActionType.GET_PRODUCTS_SUCCESS:
+    case ActionType.GET_CART_PRODUCTS_SUCCESS:
       return {
         ...state,
         loading: false,
-        products: state.products
-          ? [...state.products, ...action.payload]
-          : action.payload,
+        products: action.payload,
       };
-    case ActionType.GET_PRODUCTS_ERROR:
+    case ActionType.GET_CART_PRODUCTS_ERROR:
       return {
         ...state,
         loading: false,
@@ -41,4 +39,4 @@ const productReducer = (state = initialState, action: Action) => {
   }
 };
 
-export default productReducer;
+export default cartReducer;

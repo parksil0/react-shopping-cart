@@ -1,4 +1,4 @@
-import { Product } from "../../types/product";
+import { Cart, Product } from "../../types/dto";
 import { ActionType } from "../action-types";
 
 export interface GetProductsRequestAction {
@@ -13,7 +13,22 @@ export interface GetProductsErrorAction {
   payload: string | null;
 }
 
+export interface GetCartProductsRequestAction {
+  type: ActionType.GET_CART_PRODUCTS_REQUEST;
+}
+export interface GetCartProductsSuccessAction {
+  type: ActionType.GET_CART_PRODUCTS_SUCCESS;
+  payload: Cart[];
+}
+export interface GetCartProductsErrorAction {
+  type: ActionType.GET_CART_PRODUCTS_ERROR;
+  payload: string | null;
+}
+
 export type Action =
   | GetProductsRequestAction
   | GetProductsSuccessAction
-  | GetProductsErrorAction;
+  | GetProductsErrorAction
+  | GetCartProductsRequestAction
+  | GetCartProductsSuccessAction
+  | GetCartProductsErrorAction;
