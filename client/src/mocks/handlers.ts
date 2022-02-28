@@ -1,9 +1,12 @@
 import { rest } from "msw";
-import { Product } from "../types/product";
+import { Cart, Product } from "../types/dto";
 
 export const handlers = [
   rest.get("http://localhost:3003/products", (_, res, ctx) =>
     res(ctx.json(products))
+  ),
+  rest.get("http://localhost:3003/carts", (_, res, ctx) =>
+    res(ctx.json(cartProducts))
   ),
 ];
 
@@ -88,5 +91,28 @@ export const products: Product[] = [
     price: 21800,
     imageUrl:
       "https://cdn-mart.baemin.com/sellergoods/main/5297837f-5ecd-4945-be2f-4a75854cd06e.jpg",
+  },
+];
+
+export const cartProducts: Cart[] = [
+  {
+    id: 1,
+    product: {
+      id: 12,
+      name: "[리뉴얼]젓가락(종이)-정성을 담아",
+      price: 21800,
+      imageUrl:
+        "https://cdn-mart.baemin.com/sellergoods/main/5297837f-5ecd-4945-be2f-4a75854cd06e.jpg",
+    },
+  },
+  {
+    id: 2,
+    product: {
+      id: 11,
+      name: "젓가락(종이)-웬만해선 이 맛을 막을 수 없다",
+      price: 21800,
+      imageUrl:
+        "https://cdn-mart.baemin.com/sellergoods/main/1b6e926b-52a3-4a92-8db5-fddaccdb2583.jpg",
+    },
   },
 ];
