@@ -13,6 +13,17 @@ export interface GetProductsErrorAction {
   payload: string | null;
 }
 
+export interface PostCartProductsRequestAction {
+  type: ActionType.POST_CART_PRODUCTS_REQUEST;
+}
+export interface PostCartProductsSuccessAction {
+  type: ActionType.POST_CART_PRODUCTS_SUCCESS;
+}
+export interface PostCartProductsErrorAction {
+  type: ActionType.POST_CART_PRODUCTS_ERROR;
+  payload: string | null;
+}
+
 export interface GetCartProductsRequestAction {
   type: ActionType.GET_CART_PRODUCTS_REQUEST;
 }
@@ -25,10 +36,27 @@ export interface GetCartProductsErrorAction {
   payload: string | null;
 }
 
+export interface DeleteCartProductsRequestAction {
+  type: ActionType.DELETE_CART_PRODUCTS_REQUEST;
+}
+export interface DeleteCartProductsSuccessAction {
+  type: ActionType.DELETE_CART_PRODUCTS_SUCCESS;
+}
+export interface DeleteCartProductsErrorAction {
+  type: ActionType.DELETE_CART_PRODUCTS_ERROR;
+  payload: string | null;
+}
+
 export type Action =
   | GetProductsRequestAction
   | GetProductsSuccessAction
   | GetProductsErrorAction
+  | PostCartProductsRequestAction
+  | PostCartProductsSuccessAction
+  | PostCartProductsErrorAction
   | GetCartProductsRequestAction
   | GetCartProductsSuccessAction
-  | GetCartProductsErrorAction;
+  | GetCartProductsErrorAction
+  | DeleteCartProductsRequestAction
+  | DeleteCartProductsSuccessAction
+  | DeleteCartProductsErrorAction;

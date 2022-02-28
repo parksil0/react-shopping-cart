@@ -5,11 +5,30 @@ const api = axios.create({
   baseURL: "http://localhost:3003",
 });
 
+/**
+ * products
+ */
+
 export const requestGetProducts = async () => {
   const { data } = await api.get<Product[]>("/products");
   return data;
 };
+
+/**
+ * carts
+ */
+
 export const requestGetCartProducts = async () => {
   const { data } = await api.get<Cart[]>("/carts");
   return data;
+};
+
+export const requestDeleteCartProduct = async (id: number) => {
+  return await api.delete(`/carts/${id}`);
+};
+
+export const requestPostCartProduct = async (product: Product) => {
+  return await api.post("/carts", {
+    product,
+  });
 };
