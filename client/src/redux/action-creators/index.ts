@@ -4,10 +4,12 @@ import { Action } from "../actions";
 import {
   requestDeleteCartProduct,
   requestGetCartProducts,
+  requestGetOrder,
+  requestGetOrders,
   requestGetProducts,
   requestPostCartProduct,
 } from "../../api";
-import { Product } from "../../types/dto";
+import { OrderDetail, Product } from "../../types/dto";
 
 export const getProducts = () => {
   return async (dispatch: Dispatch<Action>) => {
@@ -71,6 +73,47 @@ export const deleteCartProduct = (
       dispatch({
         type: ActionType.DELETE_CART_PRODUCTS_ERROR,
         payload: error.message,
+      });
+    }
+  };
+};
+
+export const getOrders = () => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.GET_ORDERS_REQUEST });
+    try {
+      const orders = await requestGetOrders();
+      dispatch({ type: ActionType.GET_ORDERS_SUCCESS, payload: orders });
+    } catch (error: any) {
+      dispatch({ type: ActionType.GET_ORDERS_ERROR, payload: error.message });
+    }
+  };
+};
+
+export const getOrder = (id: number) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.GET_ORDER_REQUEST });
+    try {
+      const order = await requestGetOrder(id);
+      dispatch({ type: ActionType.GET_ORDER_SUCCESS, payload: order });
+    } catch (error: any) {
+      dispatch({ type: ActionType.GET_ORDER_ERROR, payload: error.message });
+    }
+  };
+};
+
+export const postPaymentProducts = (paymentProducts: OrderDetail[]) => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.POST_PAYMENT_PRODUCTS_REQUEST });
+    if (paymentProducts) {
+      dispatch({
+        type: ActionType.POST_PAYMENT_PRODUCTS_SUCCESS,
+        payload: paymentProducts,
+      });
+    } else {
+      dispatch({
+        type: ActionType.POST_PAYMENT_PRODUCTS_ERROR,
+        payload: "해당 삼품이 존재하지 않습니다.",
       });
     }
   };
