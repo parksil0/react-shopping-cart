@@ -137,8 +137,7 @@ const Cart = () => {
           deleteCartProduct(product.id);
         }
       });
-      postPaymentProducts(paymentProducts);
-      navigation(PATH.PAYMENT);
+      postPaymentProducts(paymentProducts, () => navigation(PATH.PAYMENT));
     }
   };
 
