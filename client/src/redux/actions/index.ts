@@ -83,6 +83,17 @@ export interface PostPaymentProductsErrorAction {
   payload: string | null;
 }
 
+export interface PostOrderDetailsRequestAction {
+  type: ActionType.POST_ORDER_DETAILS_REQUEST;
+}
+export interface PostOrderDetailsSuccessAction {
+  type: ActionType.POST_ORDER_DETAILS_SUCCESS;
+}
+export interface PostOrderDetailsErrorAction {
+  type: ActionType.POST_ORDER_DETAILS_ERROR;
+  payload: string | null;
+}
+
 export type Action =
   | GetProductsRequestAction
   | GetProductsSuccessAction
@@ -104,4 +115,7 @@ export type Action =
   | GetOrderErrorAction
   | PostPaymentProductsRequestAction
   | PostPaymentProductsSuccessAction
-  | PostPaymentProductsErrorAction;
+  | PostPaymentProductsErrorAction
+  | PostOrderDetailsRequestAction
+  | PostOrderDetailsSuccessAction
+  | PostOrderDetailsErrorAction;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Cart, Order, Product } from "../types/dto";
+import { Cart, Order, OrderDetail, Product } from "../types/dto";
 
 const api = axios.create({
   baseURL: "http://localhost:3003",
@@ -45,4 +45,8 @@ export const requestGetOrder = async (id: number) => {
 export const requestGetOrders = async () => {
   const { data } = await api.get<Order[]>("/orders");
   return data;
+};
+
+export const requestPostOrderDetails = async (orderDetails: OrderDetail[]) => {
+  return await api.post("/orders", { orderDetails });
 };

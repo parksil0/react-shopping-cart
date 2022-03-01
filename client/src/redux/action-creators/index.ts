@@ -8,6 +8,7 @@ import {
   requestGetOrders,
   requestGetProducts,
   requestPostCartProduct,
+  requestPostOrderDetails,
 } from "../../api";
 import { OrderDetail, Product } from "../../types/dto";
 
@@ -102,7 +103,10 @@ export const getOrder = (id: number) => {
   };
 };
 
-export const postPaymentProducts = (paymentProducts: OrderDetail[]) => {
+export const postPaymentProducts = (
+  paymentProducts: OrderDetail[],
+  callback: () => void
+) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({ type: ActionType.POST_PAYMENT_PRODUCTS_REQUEST });
     if (paymentProducts) {
@@ -110,10 +114,32 @@ export const postPaymentProducts = (paymentProducts: OrderDetail[]) => {
         type: ActionType.POST_PAYMENT_PRODUCTS_SUCCESS,
         payload: paymentProducts,
       });
+      callback();
     } else {
       dispatch({
         type: ActionType.POST_PAYMENT_PRODUCTS_ERROR,
         payload: "해당 삼품이 존재하지 않습니다.",
+      });
+    }
+  };
+};
+
+export const postOrderDetails = (
+  orderDetails: OrderDetail[],
+  callback: () => void
+) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.POST_ORDER_DETAILS_REQUEST });
+    try {
+      await requestPostOrderDetails(orderDetails);
+      dispatch({
+        type: ActionType.POST_ORDER_DETAILS_SUCCESS,
+      });
+      callback();
+    } catch (e: any) {
+      dispatch({
+        type: ActionType.POST_ORDER_DETAILS_ERROR,
+        payload: e.message,
       });
     }
   };

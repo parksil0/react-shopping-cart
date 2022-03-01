@@ -72,6 +72,23 @@ const productReducer = (state = initialState, action: Action) => {
         paymentProducts: null,
         message: action.payload,
       };
+    case ActionType.POST_ORDER_DETAILS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ActionType.POST_ORDER_DETAILS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case ActionType.POST_ORDER_DETAILS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        paymentProducts: null,
+        message: "요청에 실패하였습니다.",
+      };
     default:
       return state;
   }
