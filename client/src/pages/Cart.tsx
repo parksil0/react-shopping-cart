@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { useActions } from "../hooks/useActions";
 import { PATH } from "../constants";
 import { useNavigate } from "react-router-dom";
+import { OrderDetail } from "../types/dto";
 
 const Cart = () => {
   const [checkAll, setCheckAll] = useState(true);
@@ -16,7 +17,8 @@ const Cart = () => {
   const [quantities, setQuantities] = useState<number[]>();
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const { getCartProducts, deleteCartProduct } = useActions();
+  const { getCartProducts, deleteCartProduct, postPaymentProducts } =
+    useActions();
   const { products } = useSelector((state: RootState) => state.carts);
 
   const navigation = useNavigate();
@@ -125,9 +127,17 @@ const Cart = () => {
 
   const onClickOrder = () => {
     if (window.confirm("주문하시겠습니까?")) {
+      const paymentProducts: OrderDetail[] = [];
       products?.forEach((product, index) => {
-        if (checkboxes![index]) console.log(product.id);
+        if (checkboxes![index]) {
+          paymentProducts.push({
+            ...product.product,
+            quantity: quantities![index],
+          });
+          deleteCartProduct(product.id);
+        }
       });
+      postPaymentProducts(paymentProducts);
       navigation(PATH.PAYMENT);
     }
   };
