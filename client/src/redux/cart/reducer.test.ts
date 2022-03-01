@@ -1,7 +1,7 @@
 import { Cart } from "../../types/dto";
-import { ActionType } from "../action-types";
-import { Action } from "../actions";
-import cartReducer from "./cartReducer";
+import { CartAction } from "./action";
+import cartReducer from "./reducer";
+import { CartActionType } from "./actionType";
 
 const cartProducts: Cart[] = [
   {
@@ -38,15 +38,15 @@ test("initial state를 반환한다.", () => {
 
 test("장바구니 목록 불러오기 요청 시 로딩의 상태는 true이다", () => {
   const state = cartReducer(undefined, {
-    type: ActionType.GET_CART_PRODUCTS_REQUEST,
+    type: CartActionType.GET_CART_PRODUCTS_REQUEST,
   });
 
   expect(state.loading).toEqual(true);
 });
 
 test("장바구니 목록 요청 성공 시 product에 상품목록이 생성된다.", () => {
-  const action: Action = {
-    type: ActionType.GET_CART_PRODUCTS_SUCCESS,
+  const action: CartAction = {
+    type: CartActionType.GET_CART_PRODUCTS_SUCCESS,
     payload: cartProducts,
   };
 
@@ -60,8 +60,8 @@ test("장바구니 목록 요청 성공 시 product에 상품목록이 생성된
 });
 
 test("장바구니 목록 요청 실패 시 에러메세지를 호출한다.", () => {
-  const action: Action = {
-    type: ActionType.GET_CART_PRODUCTS_ERROR,
+  const action: CartAction = {
+    type: CartActionType.GET_CART_PRODUCTS_ERROR,
     payload: null,
   };
 

@@ -1,6 +1,6 @@
 import { Cart } from "../../types/dto";
-import { ActionType } from "../action-types";
-import { Action } from "../actions/index";
+import { CartAction } from "./action";
+import { CartActionType } from "./actionType";
 
 interface InitialState {
   loading: boolean;
@@ -14,54 +14,54 @@ const initialState: InitialState = {
   message: null,
 };
 
-const cartReducer = (state = initialState, action: Action) => {
+const cartReducer = (state = initialState, action: CartAction) => {
   switch (action.type) {
-    case ActionType.GET_CART_PRODUCTS_REQUEST:
+    case CartActionType.GET_CART_PRODUCTS_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case ActionType.GET_CART_PRODUCTS_SUCCESS:
+    case CartActionType.GET_CART_PRODUCTS_SUCCESS:
       return {
         ...state,
         loading: false,
         products: action.payload,
       };
-    case ActionType.GET_CART_PRODUCTS_ERROR:
+    case CartActionType.GET_CART_PRODUCTS_ERROR:
       return {
         ...state,
         loading: false,
         products: null,
         message: "상품을 불러오는데 실패하였습니다.",
       };
-    case ActionType.POST_CART_PRODUCTS_REQUEST:
+    case CartActionType.POST_CART_PRODUCTS_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case ActionType.POST_CART_PRODUCTS_SUCCESS:
+    case CartActionType.POST_CART_PRODUCTS_SUCCESS:
       return {
         ...state,
         loading: false,
       };
-    case ActionType.POST_CART_PRODUCTS_ERROR:
+    case CartActionType.POST_CART_PRODUCTS_ERROR:
       return {
         ...state,
         loading: false,
         message: "요청에 실패하였습니다.",
       };
-    case ActionType.DELETE_CART_PRODUCTS_REQUEST:
+    case CartActionType.DELETE_CART_PRODUCTS_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case ActionType.DELETE_CART_PRODUCTS_SUCCESS:
+    case CartActionType.DELETE_CART_PRODUCTS_SUCCESS:
       return {
         ...state,
         loading: false,
         // products: action.payload,
       };
-    case ActionType.DELETE_CART_PRODUCTS_ERROR:
+    case CartActionType.DELETE_CART_PRODUCTS_ERROR:
       return {
         ...state,
         loading: false,

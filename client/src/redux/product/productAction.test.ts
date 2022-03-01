@@ -1,11 +1,11 @@
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
-import { ActionType } from "./../action-types/index";
-import { getProducts } from ".";
 import { products } from "../../mocks/handlers";
 import { server } from "../../mocks/server";
 import { rest } from "msw";
+import { getProducts } from "./actionCreator";
+import { ProductActionType } from "./actionType";
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -18,7 +18,7 @@ test("상품 목록 불러오기 성공 시 상품 목록을 불러온다.", asy
   const actions = store.getActions();
 
   const expectedAction = {
-    type: ActionType.GET_PRODUCTS_SUCCESS,
+    type: ProductActionType.GET_PRODUCTS_SUCCESS,
     payload: products,
   };
 
@@ -39,7 +39,7 @@ test("상품 목록 불러오기 실패 시 에러를 호출한다.", async () =
   const actions = store.getActions();
 
   const expectedAction = {
-    type: ActionType.GET_PRODUCTS_ERROR,
+    type: ProductActionType.GET_PRODUCTS_ERROR,
     payload: "Request failed with status code 500",
   };
 

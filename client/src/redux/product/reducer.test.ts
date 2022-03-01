@@ -1,7 +1,7 @@
 import { Product } from "../../types/dto";
-import { ActionType } from "../action-types";
-import { Action } from "../actions";
-import productReducer from "./productReducer";
+import productReducer from "./reducer";
+import { ProductAction } from "./action";
+import { ProductActionType } from "./actionType";
 
 const products: Product[] = [
   {
@@ -31,15 +31,15 @@ test("initial state를 반환한다.", () => {
 
 test("상품 목록 불러오기 요청 시 로딩의 상태는 true이다", () => {
   const state = productReducer(undefined, {
-    type: ActionType.GET_PRODUCTS_REQUEST,
+    type: ProductActionType.GET_PRODUCTS_REQUEST,
   });
 
   expect(state.loading).toEqual(true);
 });
 
 test("상품 목록 요청 성공 시 product에 배열이 생성된다.", () => {
-  const action: Action = {
-    type: ActionType.GET_PRODUCTS_SUCCESS,
+  const action: ProductAction = {
+    type: ProductActionType.GET_PRODUCTS_SUCCESS,
     payload: products,
   };
 
@@ -53,8 +53,8 @@ test("상품 목록 요청 성공 시 product에 배열이 생성된다.", () =>
 });
 
 test("상품 목록 요청 실패 시 에러메세지를 호출한다.", () => {
-  const action: Action = {
-    type: ActionType.GET_PRODUCTS_ERROR,
+  const action: ProductAction = {
+    type: ProductActionType.GET_PRODUCTS_ERROR,
     payload: null,
   };
 

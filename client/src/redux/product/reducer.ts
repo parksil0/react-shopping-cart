@@ -1,6 +1,6 @@
 import { Product } from "../../types/dto";
-import { ActionType } from "../action-types";
-import { Action } from "../actions/index";
+import { ProductAction } from "./action";
+import { ProductActionType } from "./actionType";
 
 interface InitialState {
   loading: boolean;
@@ -14,14 +14,14 @@ const initialState: InitialState = {
   message: null,
 };
 
-const productReducer = (state = initialState, action: Action) => {
+const productReducer = (state = initialState, action: ProductAction) => {
   switch (action.type) {
-    case ActionType.GET_PRODUCTS_REQUEST:
+    case ProductActionType.GET_PRODUCTS_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case ActionType.GET_PRODUCTS_SUCCESS:
+    case ProductActionType.GET_PRODUCTS_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -29,7 +29,7 @@ const productReducer = (state = initialState, action: Action) => {
           ? [...state.products, ...action.payload]
           : action.payload,
       };
-    case ActionType.GET_PRODUCTS_ERROR:
+    case ProductActionType.GET_PRODUCTS_ERROR:
       return {
         ...state,
         loading: false,

@@ -1,6 +1,6 @@
 import { Order, OrderDetail } from "../../types/dto";
-import { ActionType } from "../action-types";
-import { Action } from "../actions/index";
+import { OrderActionType } from "./actionType";
+import { OrderAction } from "./action";
 
 interface InitialState {
   loading: boolean;
@@ -16,73 +16,73 @@ const initialState: InitialState = {
   message: null,
 };
 
-const productReducer = (state = initialState, action: Action) => {
+const orderReducer = (state = initialState, action: OrderAction) => {
   switch (action.type) {
-    case ActionType.GET_ORDERS_REQUEST:
+    case OrderActionType.GET_ORDERS_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case ActionType.GET_ORDERS_SUCCESS:
+    case OrderActionType.GET_ORDERS_SUCCESS:
       return {
         ...state,
         loading: false,
         orders: action.payload,
       };
-    case ActionType.GET_ORDERS_ERROR:
+    case OrderActionType.GET_ORDERS_ERROR:
       return {
         ...state,
         loading: false,
         orders: null,
         message: "주문목록을 불러오는데 실패하였습니다.",
       };
-    case ActionType.GET_ORDER_REQUEST:
+    case OrderActionType.GET_ORDER_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case ActionType.GET_ORDER_SUCCESS:
+    case OrderActionType.GET_ORDER_SUCCESS:
       return {
         ...state,
         loading: false,
         order: action.payload,
       };
-    case ActionType.GET_ORDER_ERROR:
+    case OrderActionType.GET_ORDER_ERROR:
       return {
         ...state,
         loading: false,
         order: null,
         message: "주문을 불러오는데 실패하였습니다.",
       };
-    case ActionType.POST_PAYMENT_PRODUCTS_REQUEST:
+    case OrderActionType.POST_PAYMENT_PRODUCTS_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case ActionType.POST_PAYMENT_PRODUCTS_SUCCESS:
+    case OrderActionType.POST_PAYMENT_PRODUCTS_SUCCESS:
       return {
         ...state,
         loading: false,
         paymentProducts: action.payload,
       };
-    case ActionType.POST_PAYMENT_PRODUCTS_ERROR:
+    case OrderActionType.POST_PAYMENT_PRODUCTS_ERROR:
       return {
         ...state,
         loading: false,
         paymentProducts: null,
         message: action.payload,
       };
-    case ActionType.POST_ORDER_DETAILS_REQUEST:
+    case OrderActionType.POST_ORDER_DETAILS_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case ActionType.POST_ORDER_DETAILS_SUCCESS:
+    case OrderActionType.POST_ORDER_DETAILS_SUCCESS:
       return {
         ...state,
         loading: false,
       };
-    case ActionType.POST_ORDER_DETAILS_ERROR:
+    case OrderActionType.POST_ORDER_DETAILS_ERROR:
       return {
         ...state,
         loading: false,
@@ -94,4 +94,4 @@ const productReducer = (state = initialState, action: Action) => {
   }
 };
 
-export default productReducer;
+export default orderReducer;
