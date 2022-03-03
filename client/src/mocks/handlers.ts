@@ -8,6 +8,19 @@ export const handlers = [
   rest.get("http://localhost:3003/carts", (_, res, ctx) =>
     res(ctx.json(cartProducts))
   ),
+  rest.delete("http://localhost:3003/carts/:id", (req, res, ctx) => {
+    const { id } = req.params;
+
+    const result = cartProducts.filter((product) => product.id !== Number(id));
+
+    return res(ctx.json(result));
+  }),
+
+  rest.post<Product, any>("http://localhost:3003/carts", (req, res, ctx) => {
+    const product = req.body;
+
+    return product ? res(ctx.status(201)) : res(ctx.status(401));
+  }),
 ];
 
 export const products: Product[] = [
