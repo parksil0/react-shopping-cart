@@ -11,15 +11,21 @@ export const handlers = [
   rest.delete("http://localhost:3003/carts/:id", (req, res, ctx) => {
     const { id } = req.params;
 
-    const result = cartProducts.filter((product) => product.id !== Number(id));
+    const hasProductId = cartProducts.some(
+      (product) => product.id === Number(id)
+    );
 
-    return res(ctx.json(result));
+    return hasProductId ? res(ctx.status(200)) : res(ctx.status(400));
   }),
 
-  rest.post<Product, any>("http://localhost:3003/carts", (req, res, ctx) => {
-    const product = req.body;
+  rest.post<Product>("http://localhost:3003/carts", (req, res, ctx) => {
+    const product = Object.values(req.body);
 
-    return product ? res(ctx.status(201)) : res(ctx.status(401));
+    cartProducts.push({ id: cartProducts.length + 1, product: product[0] });
+
+    return product
+      ? res(ctx.status(201), ctx.json("Created"))
+      : res(ctx.status(401));
   }),
 ];
 

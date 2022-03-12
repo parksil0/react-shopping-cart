@@ -17,11 +17,11 @@ const Cart = () => {
   const [quantities, setQuantities] = useState<number[]>();
   const [totalPrice, setTotalPrice] = useState(0);
 
+  const navigation = useNavigate();
+
   const { getCartProducts, deleteCartProduct, postPaymentProducts } =
     useActions();
   const { products } = useSelector((state: RootState) => state.carts);
-
-  const navigation = useNavigate();
 
   useEffect(() => {
     getCartProducts();
