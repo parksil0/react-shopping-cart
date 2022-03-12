@@ -9,7 +9,7 @@ interface InitialState {
   message: string | null;
 }
 
-const initialState: InitialState = {
+export const initialState: InitialState = {
   loading: false,
   orders: null,
   paymentProducts: null,
